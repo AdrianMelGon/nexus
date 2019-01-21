@@ -14,28 +14,53 @@ class AddressBook extends Layout {
     className: PropTypes.string,
   };
 
-  state = { contacts: [] };
+  state = {
+    contacts: [],
+    filter: '',
+  };
 
-  async componentDidMount() {
+  async componentWillMount() {
     this.setState({ contacts: await Contacts.read() });
   }
+
+  // async componentDidMount() {
+  // }
+
+  handleChange = event => {
+    // let filter = event;
+    const filteredContacts = [];
+    this.state.contacts.forEach(e => {
+      if (e.name.first.includes(event)) {
+        filteredContacts.push(e);
+      }
+      this.setState({ contacts: filteredContacts });
+    });
+  };
 
   render() {
     const { className } = this.props;
     const { contacts } = this.state;
 
     const element = super.render();
-
     if (!element) {
       return null;
     }
 
     return (
-      <main className={className}>
-        <StatusBar />
-        <ContactList items={contacts} />
-        {element}
-      </main>
+      <div>
+        <form style={{ marginTop: 50, marginLeft: 50 }}>
+          <input
+            placeholder="Search"
+            onChange={event => this.handleChange(event.target.value)}
+          />
+        </form>
+
+        <main className={className}>
+          <StatusBar />
+          <ContactList items={contacts} />
+          {element}
+        </main>
+      </div>
     );
   }
 }

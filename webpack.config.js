@@ -12,7 +12,7 @@ module.exports = {
     historyApiFallback: true,
     hot: true,
     overlay: true,
-    port: 3000,
+    port: 3010,
     watchContentBase: true,
   },
   devtool: 'cheap-module-eval-source-map',

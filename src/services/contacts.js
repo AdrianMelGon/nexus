@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 import storage from '../providers/storage';
 
 function sleep(seconds = 2) {

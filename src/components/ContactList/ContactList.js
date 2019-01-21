@@ -6,7 +6,9 @@ import Contact from './Contact';
 import List from '../List';
 
 const ContactList = ({ className, items }) => (
-  <List className={className} items={items} template={Contact} />
+  <div>
+    <List className={className} items={items} template={Contact} />
+  </div>
 );
 
 ContactList.defaultProps = {
